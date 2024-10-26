@@ -1,0 +1,6 @@
+feedback:
+  reloaded: "<gold>PurpurPackUpdater has been reloaded!</gold>"
+  processing: "<yellow>Checking for updates! Please wait!</yellow>"
+  up-to-date: "<green>All of your Purpur Packs are up-to-date!</green>"
+  packs-to-update: "<aqua>You have <value> update(s) available</aqua>"
+  list-item: "<gray>• <click:open_url:'<link>'><hover:show_text:'Click to go to the <pack> download link'><u><pack></u></hover></click></gray>"
