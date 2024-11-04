@@ -1,4 +1,4 @@
-package org.purpurmc.purpurPackUpdater;
+package org.purpurmc.purpurPackUpdater.common;
 
 /**
  * Represents a Purpur datapack with a project ID, version number, and name.

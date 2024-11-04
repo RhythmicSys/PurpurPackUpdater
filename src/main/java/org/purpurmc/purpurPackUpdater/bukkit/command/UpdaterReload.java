@@ -1,10 +1,10 @@
-package org.purpurmc.purpurPackUpdater.command;
+package org.purpurmc.purpurPackUpdater.bukkit.command;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import org.purpurmc.purpurPackUpdater.handling.LocaleHandler;
+import org.purpurmc.purpurPackUpdater.common.LocaleHandler;
 
 public class UpdaterReload implements CommandExecutor {
     @Override

@@ -1,16 +1,18 @@
-package org.purpurmc.purpurPackUpdater;
+package org.purpurmc.purpurPackUpdater.common;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.purpurmc.purpurPackUpdater.handling.LocaleHandler;
+import org.purpurmc.purpurPackUpdater.PurpurPackUpdater;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Util {
     public static final String MODRINTH_PROJECT = "https://modrinth.com/project/";
     public static final String API_URL_TEMPLATE = "https://api.modrinth.com/v2/project/%s/version?l=datapack";
 
+    public static final ArrayList<PurpurPack> packsToUpdate = new ArrayList<>();
     private static final MiniMessage miniMessage = PurpurPackUpdater.getMiniMessage();
 
     public static Component listOfPacks(List<PurpurPack> purpurPackList) {
@@ -35,4 +37,6 @@ public class Util {
                 Placeholder.unparsed("pack", name),
                 Placeholder.parsed("link", link));
     }
+
+
 }

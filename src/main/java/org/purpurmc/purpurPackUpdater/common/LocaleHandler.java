@@ -1,4 +1,4 @@
-package org.purpurmc.purpurPackUpdater.handling;
+package org.purpurmc.purpurPackUpdater.common;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;

@@ -1,4 +1,4 @@
-package org.purpurmc.purpurPackUpdater.handling;
+package org.purpurmc.purpurPackUpdater.common;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,16 +10,54 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-/**
- * Utility class for reading and processing version information from Purpur datapacks.
- */
-public class MetaReader {
+public class DatapackFileHandler {
     private static final Logger logger = PurpurPackUpdater.getUpdaterLogger();
+    /**
+     * Gathers all datapacks from the specified world folder, including both Purpur
+     * datapacks and non-Purpur datapacks.
+     *
+     * @param worldFolder The world folder from which to gather datapacks.
+     * @return A list of files representing the gathered datapacks.
+     */
+
+    public static List<File> gatherDatapacks(File worldFolder) {
+        List<File> datapacks = new ArrayList<>();
+        File datapacksDirectory = new File(worldFolder, "datapacks");
+        if (datapacksDirectory.exists() && datapacksDirectory.isDirectory()) {
+            File[] files = datapacksDirectory.listFiles();
+            if (files == null) return null;
+            for (File file : files) {
+                if (file.isDirectory() || file.getName().endsWith(".zip")) {
+                    datapacks.add(file);
+                }
+            }
+        }
+        return datapacks;
+    }
+
+    /**
+     * Obtains a list of PurpurPacks, which are datapacks that contain a file named 'version_info.txt'.
+     *
+     * @param datapacks A list of files representing the datapacks to search through.
+     * @return A list of PurpurPack objects created from the information provided in the file
+     */
+    public static List<PurpurPack> getPurpurPacks(List<File> datapacks) {
+        List<PurpurPack> purpurPacks = new ArrayList<>();
+        for (File file : datapacks) {
+            JSONObject versionInfo = readVersionInfo(file);
+            if (versionInfo == null) continue;
+            PurpurPack purpurPack = new PurpurPack(getProjectID(versionInfo), getCurrentVersion(versionInfo), file.getName());
+            purpurPacks.add(purpurPack);
+        }
+        return purpurPacks;
+    }
 
     /**
      * Reads the version information from a given datapack. The method determines whether the datapack

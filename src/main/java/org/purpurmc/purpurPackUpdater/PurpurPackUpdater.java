@@ -2,9 +2,9 @@ package org.purpurmc.purpurPackUpdater;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.purpurmc.purpurPackUpdater.command.CheckUpdatesCommand;
-import org.purpurmc.purpurPackUpdater.command.UpdaterReload;
-import org.purpurmc.purpurPackUpdater.handling.LocaleHandler;
+import org.purpurmc.purpurPackUpdater.bukkit.command.CheckUpdatesCommand;
+import org.purpurmc.purpurPackUpdater.bukkit.command.UpdaterReload;
+import org.purpurmc.purpurPackUpdater.common.LocaleHandler;
 
 import java.util.logging.Logger;
 
