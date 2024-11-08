@@ -14,7 +14,6 @@ public class CheckPackTask implements Runnable{
 
     @Override
     public void run() {
-        System.out.println(purpurPack.toString());
         if (purpurPack.projectID().isBlank() || purpurPack.projectID().isEmpty()) return;
         JSONArray versions = ModrinthAPIHandler.fetchModrinthInfo(purpurPack.projectID());
         if (versions == null) return;

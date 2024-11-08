@@ -6,7 +6,7 @@ commands:
   checkup:
     permission: packupdater.checkup
     description: checks which packs need updates
-  ppureload:
+  pureload:
     permission: packupdater.reload
     description: reloads the config/locale
 permissions:

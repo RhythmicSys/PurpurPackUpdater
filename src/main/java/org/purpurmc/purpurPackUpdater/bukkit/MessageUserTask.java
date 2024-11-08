@@ -12,6 +12,7 @@ public class MessageUserTask implements Runnable {
 
     private final File worldFolder;
     private final CommandSender sender;
+    private final Logger logger = PurpurPackUpdater.getUpdaterLogger();
 
     public MessageUserTask(final File worldFolder, final CommandSender sender) {
         this.worldFolder = worldFolder;
@@ -22,7 +23,13 @@ public class MessageUserTask implements Runnable {
     public void run() {
         Thread updatesThread = new Thread(new CheckUpdatesTask(worldFolder, PurpurPackUpdater.getUpdaterLogger()));
         updatesThread.start();
+        try {
+            updatesThread.join();
+        } catch (InterruptedException e) {
+            logger.warning(e.getMessage());
+            logger.warning("Thread was interrupted while waiting for thread to finish");
+            e.printStackTrace();
+        }
         sender.sendMessage(Util.listOfPacks(Util.packsToUpdate));
-        sender.sendMessage(Util.packsToUpdate.toString());
     }
 }
